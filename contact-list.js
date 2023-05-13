@@ -86,15 +86,47 @@ ingresarContacto(
   "clle 1 1-20"
 );
 
-function EliminarContacto(name, lastName) {
+function eliminarContacto(name, lastName) {
   let Posicion = listaDeContactos.findIndex(
     (data) => data.nombre == name && data.Apellidos == lastName
   );
   listaDeContactos.splice(Posicion, 1);
 }
-EliminarContacto("Santiago", "Forero");
+eliminarContacto("Santiago", "Forero");
 
-function ImprimirContactos() {
+function imprimirContactos() {
   console.log(listaDeContactos);
 }
-ImprimirContactos();
+imprimirContactos();
+
+function actualizarContacto(Id, name, lastName, phone, mail, city, address) {
+  let contactoParaEditar = listaDeContactos.filter(
+    (value) => value.id === Id
+  )[0];
+  let actualizacionDato = {
+    nombre: name,
+    Apellidos: lastName,
+    Telefono: phone,
+    email: mail,
+    Ubicacion: {
+      ciudad: city,
+      Dirección: address,
+    },
+  };
+  contactoParaEditar.nombre = actualizacionDato.nombre;
+  contactoParaEditar.Apellidos = actualizacionDato.Apellidos;
+  contactoParaEditar.Telefono = actualizacionDato.Telefono;
+  contactoParaEditar.Ubicaciones = actualizacionDato.Ubicacion;
+  contactoParaEditar.email = actualizacionDato.email;
+  console.log("contacto actualizado exitosamente");
+}
+actualizarContacto(
+  3,
+  "jhon",
+  "paniagua",
+  93768065,
+  "jhon@hotmail.com",
+  "medellìn",
+  "carrera 20"
+);
+console.log(listaDeContactos);
